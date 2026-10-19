@@ -3,8 +3,8 @@ google-genai
 langchain-google-genai
 ollama
 langchain-ollama
-langchain-community
 gradio
 langgraph
 langgraph-checkpoint-sqlite
 python-dotenv
+langchain-tavily
