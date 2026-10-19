@@ -1,18 +1,14 @@
-import os
-from dotenv import load_dotenv
+
 from langchain.agents import create_agent
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_ollama import ChatOllama
 from datetime import datetime
 
-load_dotenv()
-
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 def get_date():
     """Get the current date and time"""
     return datetime.now().strftime("%d-%m-%Y")
 
-llm = ChatGoogleGenerativeAI(model="gemini-3-flash-preview")
+llm = ChatOllama(model="qwen2.5:3b")
 
 system_prompt = """
 You are a helpful assistant.
@@ -26,6 +22,6 @@ agent = create_agent(model=llm,
 
 user_query = input("Enter your query: ")
 response = agent.invoke({"messages": [{"role": "user", "content": user_query}]})
-response = response["messages"][-1].content[0]["text"]
+response = response["messages"][-1].content
 
 print(response)
